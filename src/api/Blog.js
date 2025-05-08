@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const token = Cookies.get("token");
 
@@ -21,7 +21,7 @@ export const handleCreateBlog = async (data) => {
     formData.append("description", totalData.description);
     formData.append("imageUrl", totalData.imageUrl);
 
-    const response = await axios.post(`${backendUrl}/blog/create`, formData, {
+    const response = await axios.post(`api/blog/create`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export const handleCreateBlog = async (data) => {
 export const deleteBlog = async (id) => {
   const toastId = toast.loading("Deleting...");
   try {
-    const response = await axios.delete(`${backendUrl}/blog/delete/${id}`, {
+    const response = await axios.delete(`api/blog/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +98,7 @@ export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
     }
 
     const response = await axios.put(
-      `${backendUrl}/blog/edit/${id}`,
+      `api/blog/edit/${id}`,
       formData,
       {
         headers: {
@@ -131,7 +131,7 @@ export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
 
 export const handleFetchParticularBlogs = async (id, setSelectedBlog) => {
   try {
-    const response = await axios.get(`${backendUrl}/blog/${id}`, {
+    const response = await axios.get(`api/blog/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
