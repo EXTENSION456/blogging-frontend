@@ -11,7 +11,10 @@ export const handleLoginFunction = async (cred, navigate) => {
   };
 
   try {
-    const response = await axios.post(`${backendUrl}/auth/login`, data);
+    const response = await axios.post(`${backendUrl}/auth/login`, data, {
+      withCredentials: true,
+    });
+
     console.log(response.data);
     const token = response.data.token;
 
