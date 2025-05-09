@@ -21,7 +21,7 @@ export const handleCreateBlog = async (data) => {
     formData.append("description", totalData.description);
     formData.append("imageUrl", totalData.imageUrl);
 
-    const response = await axios.post(`${backendUrl}/apiblog/create`, formData, {
+    const response = await axios.post(`${backendUrl}/blog/create`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export const handleCreateBlog = async (data) => {
 export const deleteBlog = async (id) => {
   const toastId = toast.loading("Deleting...");
   try {
-    const response = await axios.delete(`${backendUrl}/apiblog/delete/${id}`, {
+    const response = await axios.delete(`${backendUrl}/blog/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +98,7 @@ export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
     }
 
     const response = await axios.put(
-      `${backendUrl}/apiblog/edit/${id}`,
+      `${backendUrl}/blog/edit/${id}`,
       formData,
       {
         headers: {
@@ -131,7 +131,7 @@ export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
 
 export const handleFetchParticularBlogs = async (id, setSelectedBlog) => {
   try {
-    const response = await axios.get(`${backendUrl}/apiblog/${id}`, {
+    const response = await axios.get(`${backendUrl}/blog/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

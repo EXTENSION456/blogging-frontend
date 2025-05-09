@@ -11,7 +11,7 @@ export const handleLoginFunction = async (cred, navigate) => {
   };
 
   try {
-    const response = await axios.post(`${backendUrl}/api/auth/login`, data, {
+    const response = await axios.post(`${backendUrl}/auth/login`, data, {
       withCredentials: true,
     });
 
@@ -52,7 +52,7 @@ export const handleSignupFunction = async (cred, setRenderOtpPage) => {
   };
 
   try {
-    const response = await axios.post(`${backendUrl}/api/auth/signup`, data);
+    const response = await axios.post(`${backendUrl}/auth/signup`, data);
     console.log(response.data);
 
     if (response.status === 200) {
@@ -76,7 +76,7 @@ export const handleVerifyOtp = async (cred, navigate) => {
   };
 
   try {
-    const response = await axios.post(`${backendUrl}/api/auth/verifyOtp`, data);
+    const response = await axios.post(`${backendUrl}/auth/verifyOtp`, data);
     console.log(response.data);
 
     if (response.status === 200) {
@@ -99,7 +99,7 @@ export const handleVerifyOtp = async (cred, navigate) => {
 export const handleForgotPassword = async (data) => {
   try {
     const response = await axios.post(
-      `${backendUrl}/api/auth/forgot-password`,
+      `${backendUrl}/auth/forgot-password`,
       data
     );
 
@@ -119,7 +119,7 @@ export const handleForgotPassword = async (data) => {
 export const handleCreateNewPassword = async (data, id, navigate) => {
   try {
     const response = await axios.post(
-      `${backendUrl}/api/auth/reset-password/${id}`,
+      `${backendUrl}/auth/reset-password/${id}`,
       data
     );
 
