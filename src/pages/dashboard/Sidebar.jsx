@@ -16,8 +16,6 @@ import { useBlog } from "@/components/context/BlogContext";
 export default function Sidebar() {
   const { blogs } = useBlog();
 
-  // const [selectedBlog, setSelectedBlog] = useState([]);
-
   const menuOptions = (
     <>
       <NewDocumentButton />

@@ -4,9 +4,8 @@ import Cookies from "js-cookie";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-const token = Cookies.get("token");
-
 export const handleCreateBlog = async (data) => {
+  const token = Cookies.get("token");
   const toastId = toast.loading("Uploading...");
   try {
     const totalData = {
@@ -49,6 +48,7 @@ export const handleCreateBlog = async (data) => {
 
 export const deleteBlog = async (id) => {
   const toastId = toast.loading("Deleting...");
+  const token = Cookies.get("token");
   try {
     const response = await axios.delete(`${backendUrl}/blog/delete/${id}`, {
       headers: {
@@ -76,6 +76,7 @@ export const deleteBlog = async (id) => {
 
 export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
   const toastId = toast.loading("Editing...");
+  const token = Cookies.get("token");
   try {
     const formData = new FormData();
     if (data.title && data.title !== selectedBlog.title) {
@@ -130,6 +131,7 @@ export const editBlog = async (id, data, selectedBlog, setSelectedBlog) => {
 };
 
 export const handleFetchParticularBlogs = async (id, setSelectedBlog) => {
+  const token = Cookies.get("token");
   try {
     const response = await axios.get(`${backendUrl}/blog/${id}`, {
       headers: {

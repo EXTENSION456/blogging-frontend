@@ -4,16 +4,19 @@ import Cookies from "js-cookie";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-export const handleLoginFunction = async (cred, navigate) => {
+export const handleLoginFunction = async (
+  cred,
+  navigate,
+  handleFetchAllBlogs,
+  handleFetchOwnBlogs
+) => {
   const data = {
     email: cred.email,
     password: cred.password,
   };
 
   try {
-    const response = await axios.post(`${backendUrl}/auth/login`, data, {
-      withCredentials: true,
-    });
+    const response = await axios.post(`${backendUrl}/auth/login`, data);
 
     console.log(response.data);
     const token = response.data.token;
@@ -29,6 +32,9 @@ export const handleLoginFunction = async (cred, navigate) => {
         path: "/", // available on all routes
       });
     }
+
+    await handleFetchAllBlogs();
+    await handleFetchOwnBlogs();
 
     Cookies.set("userId", response.data.user._id);
 

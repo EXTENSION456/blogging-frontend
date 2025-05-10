@@ -14,9 +14,11 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { handleLoginFunction } from "@/api/User";
 import { Toaster } from "sonner";
+import { useBlog } from "@/components/context/BlogContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { handleFetchOwnBlogs, handleFetchAllBlogs } = useBlog();
 
   const {
     register,
@@ -26,7 +28,12 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     console.log(data);
-    await handleLoginFunction(data, navigate);
+    await handleLoginFunction(
+      data,
+      navigate,
+      handleFetchAllBlogs,
+      handleFetchOwnBlogs
+    );
   };
 
   return (

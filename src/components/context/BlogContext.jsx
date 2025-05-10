@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { toast } from "sonner";
 
 const BlogContext = createContext([]);
@@ -52,13 +52,6 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
-  console.log(allBlogs);
-
-  useEffect(() => {
-    handleFetchOwnBlogs();
-    handleFetchAllBlogs();
-  }, []);
-
   return (
     <BlogContext.Provider
       value={{
@@ -69,7 +62,7 @@ export const BlogProvider = ({ children }) => {
         handleFetchOwnBlogs,
         allBlogs,
         setAllBlogs,
-        handleFetchAllBlogs
+        handleFetchAllBlogs,
       }}
     >
       {children}
